@@ -1,0 +1,88 @@
+name: glim CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * 1' # Weekly security scan
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # 1. Code Quality & Security (Fast Fail)
+  check:
+    name: 🛡️ Quality & Security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Install Tools
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-deny, cargo-audit, typos-cli
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check Formatting
+        run: cargo fmt -- --check
+
+      - name: Check Typos
+        run: typos
+
+      - name: Lint (Clippy)
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Security Audit
+        run: cargo audit
+
+      - name: License & Ban Check
+        run: cargo deny check
+
+  # 2. Testing (Parallel)
+  test:
+    name: 🧪 Test
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Nextest
+        uses: taiki-e/install-action@nextest
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run Tests
+        run: cargo nextest run
+
+  # 3. Build Verification
+  build:
+    name: 📦 Build
+    needs: test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build Release
+        run: cargo build --release --locked

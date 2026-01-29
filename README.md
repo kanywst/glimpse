@@ -1,111 +1,100 @@
-# Glimpse 👁️
+# Glim
 
-> **Code review at the speed of thought.**
-> *Paradigm shift from Line-Oriented to Intent-Oriented diffs.*
+> Code review at the speed of thought.
+> A paradigm shift from Line-Oriented to Intent-Oriented diffs.
 
-[![CI](https://github.com/glimpse-rs/glimpse/actions/workflows/ci.yml/badge.svg)](https://github.com/glimpse-rs/glimpse/actions)
-[![Crates.io](https://img.shields.io/crates/v/glimpse.svg)](https://crates.io/crates/glimpse)
+[![CI](https://github.com/glim-rs/glim/actions/workflows/ci.yml/badge.svg)](https://github.com/glim-rs/glim/actions)
+[![Crates.io](https://img.shields.io/crates/v/glim.svg)](https://crates.io/crates/glim)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Rust](https://img.shields.io/badge/rust-1.80%2B-orange.svg)](https://www.rust-lang.org)
 
 ---
 
-**Glimpse** is a next-generation Git CLI tool designed for the 2026 developer. It moves beyond the 50-year-old "patch" format to provide a **Semantic**, **Visual**, and **Context-Aware** understanding of your code changes.
+Glim is a next-generation Git CLI tool designed for modern development workflows. It moves beyond the traditional patch format to provide a semantic, visual, and context-aware understanding of code changes.
 
-![Glimpse Demo](https://raw.githubusercontent.com/glimpse-rs/glimpse/main/assets/demo.gif)
-*(Above: Semantic Zooming in action - from Galaxy View to Logic View)*
+![Glim Demo](./assets/demo.gif)
 
-## 🌟 Why Glimpse?
+## Concept
 
-Software complexity has outpaced our tools. `git diff` shows you *what* lines changed, but Glimpse tells you *why* and *where* it matters.
+Software complexity has outpaced our tools. `git diff` shows you *what* lines changed, but Glim tells you *why* and *where* it matters.
 
-*   **🌌 Galaxy View (Semantic Zoom L1)**: See the "Heatmap" of your changes. Which modules are most affected?
-*   **🏗️ Structure View (Semantic Zoom L2)**: Don't read files; read *functions*. See a tree of modified symbols (functions, structs) powered by **Tree-sitter**.
-*   **📝 Logic View (Semantic Zoom L3)**: Context-aware diffs with syntax highlighting and noise reduction.
-*   **🐙 GitHub PR Mode**: Review Pull Requests directly in your terminal with the same semantic power.
+*   **Galaxy View (Zoom L1)**: Heatmap of changes. Identifies impact zones instantly.
+*   **Structure View (Zoom L2)**: Reads functions, not just files. Displays a tree of modified symbols powered by Tree-sitter. Supports interactive staging.
+*   **Logic View (Zoom L3)**: Context-aware diffs with syntax highlighting and noise reduction.
+*   **GitHub PR Mode**: Reviews Pull Requests directly in the terminal.
 
-## 🚀 Installation
+## Installation
 
-### Using Cargo (Recommended)
+### Cargo
 
 ```bash
-cargo install glimpse
+cargo install glim
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/glimpse-rs/glimpse.git
-cd glimpse
+git clone https://github.com/glim-rs/glim.git
+cd glim
 make build
 cargo install --path .
 ```
 
-## 🎮 Usage
+## Usage
 
-Glimpse adapts to your context. Whether you're coding locally or reviewing a teammate's PR.
-
-### 1. Local Development
+### Local Development
 
 View working tree changes in the current directory:
 
 ```bash
-glimpse .
+glim .
 ```
 
-Or target a specific repository:
+Target a specific repository:
 
 ```bash
-glimpse ~/dev/my-project
+glim ~/dev/my-project
 ```
 
-### 2. GitHub PR Review
+### GitHub Review
 
 Review a Pull Request by URL or ID (Requires `gh` CLI):
 
 ```bash
-# By URL
-glimpse https://github.com/owner/repo/pull/123
-
-# By Short Format
-glimpse owner/repo#123
+glim owner/repo#123
 ```
 
-## ⌨️ Controls
-
-Glimpse uses a Vim-inspired, game-like navigation system.
+## Controls
 
 | Key | Action |
 | --- | --- |
 | `j` / `k` | Navigate items |
-| `Enter` | **Zoom In** (Galaxy -> Structure -> Logic) |
-| `Backspace` | **Zoom Out** |
+| `Enter` | Zoom In (Galaxy -> Structure -> Logic) |
+| `Backspace` | Zoom Out |
+| `Space` | Stage / Unstage File |
 | `q` | Quit |
-| `?` | AI Context Summary (Coming Soon) |
 
-## 🛠️ Technology Stack (2026 Standard)
+## Technology Stack
 
-We leverage the cutting edge of the Rust ecosystem:
+Built on the cutting edge of the Rust ecosystem (2026 Standard).
 
-*   **Core**: Rust 2021/2024 Edition
-*   **TUI**: [Ratatui v0.30](https://github.com/ratatui-org/ratatui) (The future of TUI)
-*   **Parsing**: [Tree-sitter v0.24](https://tree-sitter.github.io/) (Incremental parsing)
-*   **Git**: `git2` / `libgit2`
-*   **Async**: Tokio v1.43
+*   **Core**: Rust 2024 Edition
+*   **TUI**: Ratatui v0.30
+*   **Parsing**: Tree-sitter v0.26
+*   **Git**: git2 (libgit2)
+*   **Async**: Tokio v1.49
 
-## 🤝 Contributing
+## Contributing
 
-We believe in **Emotional Design**. Tools should be a joy to use.
-We enforce strict quality standards via our DevSecOps pipeline:
+We enforce strict quality standards via our DevSecOps pipeline.
 
 ```bash
-# Setup environment (install nextest, typos, cargo-deny)
+# Setup environment
 make setup
 
-# Run full CI check locally
+# Run full CI check
 make check
 ```
 
-## 📜 License
+## License
 
-MIT © [Glimpse Contributors](https://github.com/glimpse-rs/glimpse/graphs/contributors)
+MIT © [Glim Contributors](https://github.com/glim-rs/glim/graphs/contributors)

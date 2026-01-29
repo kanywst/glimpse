@@ -1,0 +1,13 @@
+[default]
+extend-ignore-re = [
+    "impl_item", # Tree-sitter query syntax
+]
+check-file = true
+check-filename = true
+
+[files]
+extend-exclude = ["target"]
+
+[default.extend-words]
+Ratatui = "Ratatui"
+ratatui = "ratatui"

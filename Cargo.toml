@@ -1,0 +1,51 @@
+[package]
+name = "glim"
+version = "0.1.0"
+edition = "2024"
+authors = ["Glim Team"]
+description = "Next-generation Git Diff CLI tool with semantic zooming and AI integration."
+license = "MIT"
+
+[dependencies]
+# Downgraded to match tui-textarea dependency to avoid duplicates
+ratatui = "0.29.0"
+crossterm = "0.28.1"
+tokio = { version = "1.43.0", features = ["full"] }
+anyhow = "1.0.95"
+clap = { version = "4.5.26", features = ["derive"] }
+git2 = "0.20.0"
+syntect = "5.3.0"
+tui-textarea = "0.7.0"
+arboard = "3.4.1"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+better-panic = "0.3.0"
+directories = "6.0.0"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.137"
+toml = "0.8.19"
+# Kept latest tree-sitter as it works
+tree-sitter = "0.24.6"
+tree-sitter-rust = "0.23.2"
+tree-sitter-typescript = "0.23.2"
+streaming-iterator = "0.1.9"
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+strip = true
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+expect_used = "allow"
+module_name_repetitions = "allow"
+cast_possible_truncation = "allow"
+cast_sign_loss = "allow"
+cast_precision_loss = "allow"
