@@ -3,7 +3,7 @@
 > Code review at the speed of thought.
 > A paradigm shift from Line-Oriented to Intent-Oriented diffs.
 
-[![CI](https://github.com/glim-rs/glim/actions/workflows/ci.yml/badge.svg)](https://github.com/glim-rs/glim/actions)
+[![CI](https://github.com/kanywst/glim/actions/workflows/ci.yml/badge.svg)](https://github.com/kanywst/glim/actions)
 [![Crates.io](https://img.shields.io/crates/v/glim.svg)](https://crates.io/crates/glim)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -33,7 +33,7 @@ cargo install glim
 ### From Source
 
 ```bash
-git clone https://github.com/glim-rs/glim.git
+git clone https://github.com/kanywst/glim.git
 cd glim
 make build
 cargo install --path .
@@ -97,4 +97,4 @@ make check
 
 ## License
 
-MIT © [Glim Contributors](https://github.com/glim-rs/glim/graphs/contributors)
+MIT © [Glim Contributors](https://github.com/kanywst/glim/graphs/contributors)
